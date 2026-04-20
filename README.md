@@ -245,7 +245,3 @@ See **DOCKER_DEPLOYMENT.md** for complete deployment instructions.
 - CORS protection
 - SQL injection prevention with parameterized queries
 - Input validation
-
-## License
-
-This project is licensed under the MIT License.

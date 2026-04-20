@@ -37,13 +37,13 @@ export default function TransactionForm({ onTransactionAdded }) {
     ]
   };
 
-  // AI Classification - runs when description changes
+  // Classification logic
   useEffect(() => {
     if (formData.description.length > 2) {
       const aiClassification = classifyTransaction(formData.description);
       setAiResult(aiClassification);
 
-      // Auto-update type and category based on AI
+      // Auto-update type and category
       setFormData(prev => ({
         ...prev,
         type: aiClassification.type,
@@ -78,7 +78,7 @@ export default function TransactionForm({ onTransactionAdded }) {
       // Show success message
       const successDiv = document.createElement('div');
       successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse';
-      successDiv.innerHTML = '✓ Transaction Added!';
+      successDiv.innerHTML = 'Transaction Added!';
       document.body.appendChild(successDiv);
       setTimeout(() => successDiv.remove(), 2000);
 
@@ -95,7 +95,7 @@ export default function TransactionForm({ onTransactionAdded }) {
     }, 500);
   };
 
-  // Simple AI classification logic for demo
+  // Transaction classification
   const classifyTransaction = (desc) => {
     const lower = desc.toLowerCase();
     let type = 'EXPENSE';
@@ -191,10 +191,10 @@ export default function TransactionForm({ onTransactionAdded }) {
             required
           />
 
-          {/* AI Classification Result */}
+          {/* Classification Result */}
           {aiResult && (
             <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
-              <span className="text-green-600 font-medium">🤖 Auto-Detected:</span>
+              <span className="text-green-600 font-medium">Auto-detected:</span>
               <span className={`px-2 py-1 rounded font-medium ${
                 aiResult.type === 'INCOME'
                   ? 'bg-green-100 text-green-800'
@@ -223,8 +223,8 @@ export default function TransactionForm({ onTransactionAdded }) {
               className="input-field"
               required
             >
-              <option value="EXPENSE">💸 Expense</option>
-              <option value="INCOME">💰 Income</option>
+              <option value="EXPENSE">Expense</option>
+              <option value="INCOME">Income</option>
             </select>
           </div>
 
@@ -294,45 +294,38 @@ export default function TransactionForm({ onTransactionAdded }) {
           {loading ? (
             <>
               <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-              Adding Transaction...
+              Processing...
             </>
           ) : (
             <>
-              {formData.type === 'INCOME' ? '💰' : '💸'} Add Transaction
+              Add Transaction
             </>
           )}
         </button>
       </form>
 
       {/* Examples */}
-      <div className="mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 text-sm">
-        <h4 className="font-semibold text-blue-900 mb-3">💡 Try These Examples (Smart auto-classification):</h4>
-        <div className="grid md:grid-cols-2 gap-3 text-blue-700">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm">
+        <h4 className="font-semibold text-gray-900 mb-3">Examples:</h4>
+        <div className="grid md:grid-cols-2 gap-3 text-gray-700">
           <div>
-            <div className="font-medium text-blue-900 mb-2">💸 Expenses:</div>
+            <div className="font-medium text-gray-900 mb-2">Expenses:</div>
             <div className="space-y-1">
               <div>• "coffee at starbucks" → Food & Dining</div>
               <div>• "ola to office" → Transportation</div>
               <div>• "netflix subscription" → Entertainment</div>
               <div>• "electricity bill" → Bills & Utilities</div>
-              <div>• "medicines" → Healthcare</div>
             </div>
           </div>
           <div>
-            <div className="font-medium text-blue-900 mb-2">💰 Income:</div>
+            <div className="font-medium text-gray-900 mb-2">Income:</div>
             <div className="space-y-1">
               <div>• "monthly salary" → Salary</div>
               <div>• "freelance payment" → Freelance</div>
               <div>• "stock dividend" → Investment</div>
               <div>• "bonus payment" → Bonus</div>
-              <div>• "rental income" → Rental Income</div>
             </div>
           </div>
-        </div>
-        <div className="mt-3 pt-3 border-t border-blue-200 text-xs text-blue-600">
-          ⚡ Type description and watch smart detection in real-time!
-          <br />
-          ✏️ You can change Type or Category if needed
         </div>
       </div>
     </div>

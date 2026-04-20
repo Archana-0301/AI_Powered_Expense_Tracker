@@ -92,7 +92,7 @@ export default function DashboardHome() {
       // Show success message
       const successDiv = document.createElement('div');
       successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-bounce';
-      successDiv.innerHTML = `✓ PDF Downloaded: ${fileName}`;
+      successDiv.innerHTML = `PDF Downloaded: ${fileName}`;
       document.body.appendChild(successDiv);
       setTimeout(() => successDiv.remove(), 3000);
     } catch (error) {
@@ -101,7 +101,7 @@ export default function DashboardHome() {
       // Show error message
       const errorDiv = document.createElement('div');
       errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
-      errorDiv.innerHTML = `✗ Error: ${error.message}`;
+      errorDiv.innerHTML = `Error: ${error.message}`;
       document.body.appendChild(errorDiv);
       setTimeout(() => errorDiv.remove(), 5000);
     }

@@ -1,40 +1,33 @@
-# 🤖 AI-Powered Personal Finance Tracker
+# AI-Powered Personal Finance Tracker
 
-> **Production-level full-stack application featuring intelligent transaction classification using Claude AI**
+A full-stack application for tracking income and expenses with intelligent transaction classification using Claude AI.
 
 [![Java](https://img.shields.io/badge/Java-17-orange)](https://openjdk.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-green)](https://spring.io/projects/spring-boot)
 [![React](https://img.shields.io/badge/React-18-blue)](https://reactjs.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)](https://www.postgresql.org/)
-[![Claude AI](https://img.shields.io/badge/Claude-API-purple)](https://www.anthropic.com/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
 
----
-
-## 🌟 Key Features
+## Features
 
 ### AI-Powered Intelligence
-- ✨ **Automatic Classification**: AI categorizes transactions from simple descriptions like "coffee", "salary", "uber ride"
-- 🎯 **90%+ Accuracy**: Claude API with few-shot learning achieves high precision
-- 📊 **Confidence Scoring**: See how confident the AI is in each classification
-- 💡 **Smart Insights**: AI-generated monthly spending analysis and recommendations
+- Automatic transaction classification using Claude API
+- Categorizes expenses from simple descriptions ("coffee", "uber ride", etc.)
+- Confidence scoring for AI classifications
+- Monthly spending analysis and recommendations
 
 ### Financial Management
-- 💰 **Income & Expense Tracking**: Comprehensive transaction management
-- 📈 **Real-time Dashboard**: Monthly statistics, savings, and spending trends
-- 📊 **Visual Analytics**: Interactive pie and bar charts (Recharts)
-- 🗓️ **Monthly Views**: Filter by month/year for historical analysis
+- Track income and expenses with transaction history
+- Monthly statistics dashboard with savings tracking
+- Visual analytics with interactive charts
+- Filter transactions by month and year
 
-### Technical Excellence
-- 🔐 **Secure Authentication**: JWT-based auth with BCrypt password hashing
-- ⚡ **High Performance**: <200ms API response time
-- 🐳 **Docker Ready**: Complete containerization with docker-compose
-- ☁️ **Cloud Deployable**: AWS ECS, RDS, S3, CloudFront ready
-- 🔄 **CI/CD Pipeline**: GitHub Actions for automated testing and deployment
+### Technical Features
+- JWT authentication with secure password hashing
+- RESTful API with Swagger documentation
+- Docker containerization
+- Responsive React frontend with Tailwind CSS
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 Expense_Income_Tracker/
@@ -73,9 +66,7 @@ Expense_Income_Tracker/
 └── docker-compose.yml                # Container orchestration
 ```
 
----
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **Framework**: Spring Boot 3.2.4
@@ -95,13 +86,9 @@ Expense_Income_Tracker/
 
 ### DevOps
 - **Containerization**: Docker & Docker Compose
-- **CI/CD**: GitHub Actions
-- **Cloud**: AWS (ECS, RDS, S3, CloudFront)
-- **Monitoring**: Spring Actuator + Prometheus ready
+- **Cloud**: AWS deployment ready
 
----
-
-## 🚀 Quick Start
+## Getting Started
 
 ### Prerequisites
 - Java 17+
@@ -173,23 +160,17 @@ npm run dev
 # Frontend runs on http://localhost:5173
 ```
 
----
+## Documentation
 
-## 📖 Documentation
+Additional documentation:
 
-Comprehensive guides are available:
+- **SYSTEM_DESIGN.md** - Architecture and data flow
+- **DATABASE_SCHEMA.md** - Database schema
+- **BACKEND_IMPLEMENTATION.md** - Backend implementation details
+- **FRONTEND_IMPLEMENTATION.md** - Frontend implementation details
+- **DOCKER_DEPLOYMENT.md** - Deployment guide
 
-- **[SYSTEM_DESIGN.md](./SYSTEM_DESIGN.md)** - Architecture, components, data flow
-- **[DATABASE_SCHEMA.md](./DATABASE_SCHEMA.md)** - Complete schema with indexes
-- **[BACKEND_IMPLEMENTATION.md](./BACKEND_IMPLEMENTATION.md)** - All backend code
-- **[FRONTEND_IMPLEMENTATION.md](./FRONTEND_IMPLEMENTATION.md)** - Complete React app
-- **[DOCKER_DEPLOYMENT.md](./DOCKER_DEPLOYMENT.md)** - Docker & AWS deployment
-- **[IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md)** - Step-by-step setup (10-12 days)
-- **[RESUME_BULLETS.md](./RESUME_BULLETS.md)** - Resume talking points & interview prep
-
----
-
-## 🎯 API Endpoints
+## API Endpoints
 
 ### Authentication
 ```bash
@@ -238,22 +219,7 @@ curl -X POST http://localhost:8080/api/transactions \
 }
 ```
 
----
-
-## 🎨 Screenshots
-
-### Dashboard
-![Dashboard showing monthly stats, expense charts, and AI insights]
-
-### Transaction Form
-![AI-powered transaction form with real-time classification]
-
-### Monthly Analytics
-![Interactive charts showing category breakdown]
-
----
-
-## 🧪 Testing
+## Testing
 
 ### Backend Tests
 ```bash
@@ -269,98 +235,17 @@ npm run test                # Run tests
 npm run build               # Production build
 ```
 
----
+## Deployment
 
-## 🌐 Deployment
+See **DOCKER_DEPLOYMENT.md** for complete deployment instructions.
 
-### AWS Deployment
-```bash
-# 1. Build images
-docker-compose build
+## Security
 
-# 2. Push to ECR
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin YOUR_ECR_URL
-docker tag finance-tracker-backend:latest YOUR_ECR_URL/backend:latest
-docker push YOUR_ECR_URL/backend:latest
+- JWT authentication with BCrypt password hashing
+- CORS protection
+- SQL injection prevention with parameterized queries
+- Input validation
 
-# 3. Deploy to ECS
-aws ecs update-service --cluster finance-tracker --service backend --force-new-deployment
-```
+## License
 
-See **[DOCKER_DEPLOYMENT.md](./DOCKER_DEPLOYMENT.md)** for complete deployment guide.
-
----
-
-## 🔒 Security Features
-
-- ✅ JWT-based stateless authentication
-- ✅ BCrypt password hashing
-- ✅ CORS protection
-- ✅ SQL injection prevention (parameterized queries)
-- ✅ XSS prevention (React auto-escaping)
-- ✅ Input validation (Jakarta Validation API)
-- ✅ Rate limiting ready
-- ✅ HTTPS in production
-
----
-
-## 📊 Performance
-
-- ⚡ API Response Time: **<200ms** average
-- 🎯 AI Classification Accuracy: **90%+**
-- 🔄 Uptime: **99.9%**
-- 👥 Concurrent Users: **1000+** supported
-- 💾 Database Queries: **70% faster** with indexing
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👨‍💻 Author
-
-**Your Name**
-- Portfolio: [yourwebsite.com](https://yourwebsite.com)
-- LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
-- GitHub: [@yourusername](https://github.com/yourusername)
-
----
-
-## 🙏 Acknowledgments
-
-- [Anthropic](https://www.anthropic.com/) - Claude AI API
-- [Spring Boot](https://spring.io/projects/spring-boot) - Backend framework
-- [React](https://reactjs.org/) - Frontend framework
-- [Recharts](https://recharts.org/) - Chart library
-
----
-
-## 📚 Learning Resources
-
-Built this project to learn? Check out:
-- [Spring Boot Documentation](https://spring.io/projects/spring-boot)
-- [React Documentation](https://react.dev/)
-- [Claude API Docs](https://docs.anthropic.com/)
-- [Docker Documentation](https://docs.docker.com/)
-- [AWS ECS Guide](https://docs.aws.amazon.com/ecs/)
-
----
-
-## ⭐ Star this repo if you found it helpful!
-
-Made with ❤️ and lots of ☕
+This project is licensed under the MIT License.

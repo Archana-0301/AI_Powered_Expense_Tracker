@@ -13,8 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * Transaction entity representing income or expense entries.
- * Includes AI classification metadata for intelligent categorization.
+ * Transaction entity for income and expense records.
  */
 @Entity
 @Table(name = "transactions", indexes = {

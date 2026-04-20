@@ -22,19 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * AI-powered transaction classification service using Claude API.
- *
- * This service intelligently categorizes financial transactions using:
- * - Natural language processing via Claude 3.5 Sonnet
- * - Prompt engineering with few-shot examples
- * - Response caching for performance optimization
- * - Fallback to rule-based classification on failures
- *
- * Key features for resume:
- * - LLM integration with Anthropic Claude API
- * - Structured JSON output parsing
- * - Confidence scoring for classification accuracy
- * - Production-grade error handling and fallbacks
+ * Transaction classification service using Claude API.
+ * Categorizes transactions with confidence scoring and fallback classification.
  */
 @Service
 @Slf4j
@@ -65,12 +54,7 @@ public class AIClassificationService {
     }
 
     /**
-     * Classifies a transaction description using Claude AI with caching.
-     * Cache key is SHA-256 hash of lowercase description for performance.
-     *
-     * @param description User's transaction description
-     * @param amount Transaction amount for context
-     * @return AIClassificationResponse with type, category, subcategory, and confidence
+     * Classifies a transaction using Claude AI with caching.
      */
     @Cacheable(value = "aiClassificationCache", key = "#description.toLowerCase()")
     public AIClassificationResponse classifyTransaction(String description, BigDecimal amount) {
@@ -92,10 +76,6 @@ public class AIClassificationService {
         }
     }
 
-    /**
-     * Builds optimized prompt for Claude API with few-shot examples.
-     * Uses structured prompt engineering for consistent JSON responses.
-     */
     private String buildClassificationPrompt(String description, BigDecimal amount) {
         return String.format("""
                 You are a financial transaction classifier. Analyze the transaction and return ONLY a JSON object.
@@ -126,9 +106,6 @@ public class AIClassificationService {
                 """, description, amount);
     }
 
-    /**
-     * Calls Claude API with retry logic and timeout handling.
-     */
     private String callClaudeAPI(String prompt) {
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("model", model);
@@ -164,9 +141,6 @@ public class AIClassificationService {
         }
     }
 
-    /**
-     * Parses Claude's JSON response into structured classification object.
-     */
     private AIClassificationResponse parseAIResponse(String aiResponse) {
         try {
             // Extract JSON from response (sometimes Claude adds explanation)
@@ -197,10 +171,6 @@ public class AIClassificationService {
         }
     }
 
-    /**
-     * Rule-based fallback classification for when AI service is unavailable.
-     * Uses keyword matching for basic categorization.
-     */
     private AIClassificationResponse fallbackClassification(String description, BigDecimal amount) {
         String lowerDesc = description.toLowerCase();
 
@@ -262,10 +232,6 @@ public class AIClassificationService {
         return response;
     }
 
-    /**
-     * Generates insights about spending patterns using AI analysis.
-     * Can be used for monthly summaries and recommendations.
-     */
     public String generateSpendingInsights(Map<String, BigDecimal> categoryTotals,
                                           BigDecimal totalExpense,
                                           BigDecimal totalIncome) {
@@ -306,9 +272,6 @@ public class AIClassificationService {
         return sb.toString();
     }
 
-    /**
-     * Generates SHA-256 hash for cache keys.
-     */
     private String generateCacheKey(String description) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
